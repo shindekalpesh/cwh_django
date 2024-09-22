@@ -9,6 +9,7 @@ def index(request):
         "variable2": "this is a temp variable2",
 
     }
+    messages.success(request, "This is a test message!")
     return render(request, 'index.html', context)
     # return HttpResponse("This is home page!")
 
@@ -26,5 +27,5 @@ def contact(request):
         desc = request.POST.get('desc')
         contact = Contact(name=name, email=email, phone=phone, desc=desc, date=datetime.today())
         contact.save()
-        messages.success(request, 'Your details have been recorded')
+        messages.success(request, 'Your message has been sent!')
     return render(request, 'contact.html')
