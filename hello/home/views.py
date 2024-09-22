@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from home.models import Contact
 from datetime import datetime
+from django.contrib import messages
 
 def index(request):
     context = {
@@ -25,4 +26,5 @@ def contact(request):
         desc = request.POST.get('desc')
         contact = Contact(name=name, email=email, phone=phone, desc=desc, date=datetime.today())
         contact.save()
+        messages.success(request, 'Your details have been recorded')
     return render(request, 'contact.html')
